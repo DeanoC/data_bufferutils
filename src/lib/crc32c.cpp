@@ -31,13 +31,22 @@
 #define HAS_SSE_INTRINSICS
 #endif
 
-#if AL2O3_PLATFORM == AL2O3_PLATFORM_APPLE_MAC
-#define HAS_SSE_INTRINSICS
-#endif
+// TODO sort out clang compile options (possible move SSE to seperate file required)
+//#if AL2O3_PLATFORM == AL2O3_PLATFORM_APPLE_MAC
+//#define HAS_SSE_INTRINSICS
+//#endif
 
 #ifdef HAS_SSE_INTRINSICS
-#include <nmmintrin.h>
+#if AL2O3_PLATFORM == AL2O3_PLATFORM_WINDOWS
 #include <intrin.h>
+#else
+#include <x86intrin.h>
+#define __cpuid(out, infoType)\
+	asm("cpuid": "=a" (out[0]), "=b" (out[1]), "=c" (out[2]), "=d" (out[3]): "a" (infoType));
+#endif
+
+#include <nmmintrin.h>
+#include <pmmintrin.h>
 #endif
 
 #include <stdio.h>
@@ -322,6 +331,7 @@ static uint32_t append_hw(uint32_t crc, buffer buf, size_t len)
     /* return a post-processed crc */
     return static_cast<uint32_t>(crc0) ^ 0xffffffff;
 }
+
 
 static bool detect_hw()
 {
