@@ -44,6 +44,7 @@ set(Deps
 
 ADD_LIB(${LibName} "${Interface}" "${Src}" "${Deps}")
 target_include_directories(${LibName} PUBLIC ${lz4_lz4_SOURCE_DIR})
+target_include_directories(${LibName} PUBLIC src)
 target_sources(${LibName} PRIVATE ${lz4_lz4_SOURCE_DIR}/lib/lz4.c)
 target_sources(${LibName} PRIVATE ${lz4_lz4_SOURCE_DIR}/lib/lz4.h)
 target_sources(${LibName} PRIVATE ${lz4_lz4_SOURCE_DIR}/lib/lz4frame.c)
