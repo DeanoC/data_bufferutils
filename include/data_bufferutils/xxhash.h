@@ -1,8 +1,6 @@
 // BSD-2 Licensed (full license and info at end of file)
 
 #pragma once
-#ifndef AL2O3_DATA_BUFFERUTILS_XXHASH_H
-#define AL2O3_DATA_BUFFERUTILS_XXHASH_H
 
 #include "al2o3_platform/platform.h"
 
@@ -10,7 +8,7 @@ AL2O3_EXTERN_C uint64_t XXHash_Compute(uint64_t seed, void const* src, size_t le
 
 #endif // end AL2O3_LZ4_LZ4_H
 /*
- Copyright (C) 2019-present, Dean Calver.
+ Small modifications by Deano Calver to the code by Mark and Robert just compat stuff
  Includes lz4 by Yann Collet - LZ4 source repository : https://github.com/lz4/lz4
 
    BSD 2-Clause License (http://www.opensource.org/licenses/bsd-license.php)
